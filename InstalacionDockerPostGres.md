@@ -66,3 +66,7 @@ CREATE DATABASE my_first_database;
 - Contenedor PostgreSQL corriendo en Docker.
 - Conexión establecida correctamente en DataGrip.
 - Base de datos creada exitosamente desde la consola SQL de DataGrip.
+
+# Video
+
+[video] (https://drive.google.com/file/d/1iu3zG5ardMBXsVBbp7j9xrGma207L6KG/view?usp=drive_link)
