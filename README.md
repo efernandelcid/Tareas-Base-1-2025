@@ -1,68 +1,55 @@
-# Proyecto de Bases de Datos en PostgreSQL
 
-Este repositorio contiene la implementación de tres modelos de base de datos diferentes en **PostgreSQL**, cada uno basado en un enunciado dado.  
-El archivo SQL (`proyecto.sql`) incluye las sentencias `CREATE TABLE` y las relaciones con sus llaves primarias y foráneas.
+# PostgreSQL DDL desde Python (psycopg2) — Proyecto VS Code
 
----
+Cumple con:
+- Conectarse a PostgreSQL desde **Python**.
+- Crear **al menos 2 tablas**.
+- Operaciones DDL desde Python:
+  - Agregar columnas nuevas.
+  - Renombrar columnas.
+  - Eliminar columnas.
+  - Agregar un **CHECK**.
+  - Eliminar una tabla.
+- Incluir `README.md`, `main.py` y PDF para enlaces de entrega.
 
-## 1. Registro de importación de vehículos
+## Requisitos
+- Python 3.10+
+- Docker (opcional) con contenedor `practicas-pyton`
+- VS Code + extensión Python
 
-**Descripción:**  
-Una empresa de importación recibe vehículos de distintos países. Los vehículos se agrupan en lotes y se asignan a concesionarios locales.
-
-**Entidades principales:**
-- **Lote de importación:** código, fecha de llegada, país de origen.  
-- **Concesionario:** código, nombre comercial, dirección, persona de contacto.  
-- **Vehículo:** número de serie, marca, modelo, año, velocidad máxima, precio, id de lote y concesionario.  
-
-**Estructura SQL:**
-```sql
-CREATE TABLE lote_importacion (...);
-CREATE TABLE concesionario (...);
-CREATE TABLE vehiculo (...);
+## Arrancar DB (opcional con Docker)
+```powershell
+# crea/arranca el contenedor practicas-pyton en 5432
+./start_db.ps1
 ```
 
----
-
-## 2. Plataforma de gestión de eventos deportivos
-
-**Descripción:**  
-Un sistema que administra torneos de fútbol, baloncesto, voleibol, etc. Los torneos registran partidos, equipos participantes y estadios.
-
-**Entidades principales:**
-- **Torneo:** nombre, fechas, ciudad sede.  
-- **Equipo:** nombre oficial, año de fundación, entrenador.  
-- **Estadio:** nombre, capacidad, ubicación.  
-- **Partido:** código, fecha, equipos participantes, marcador, estadio.  
-
-**Estructura SQL:**
-```sql
-CREATE TABLE torneo (...);
-CREATE TABLE equipo (...);
-CREATE TABLE estadio (...);
-CREATE TABLE partido (...);
+## Configurar .env
+Copia `.env.example` a `.env` y ajusta si cambiaste puerto/usuario:
+```ini
+PGHOST=localhost
+PGPORT=5432
+PGUSER=postgres
+PGPASSWORD=postgres
+PGDATABASE=practicas_pyton
 ```
 
----
+## Ejecutar
+```powershell
+# crear venv e instalar
+py -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
 
-## 3. Sistema de seguimiento de envíos internacionales
-
-**Descripción:**  
-Una compañía de logística maneja envíos, con remitente, destinatario, servicio de transporte y eventos de seguimiento.
-
-**Entidades principales:**
-- **Cliente:** código, nombre, dirección, teléfono.  
-- **Servicio de transporte:** código, tipo de transporte, empresa operadora.  
-- **Envío:** número de guía, fecha de creación, peso, valor declarado, cliente remitente y destinatario.  
-- **Evento de seguimiento:** código, fecha, hora, ubicación, estado del paquete.  
-
-**Estructura SQL:**
-```sql
-CREATE TABLE cliente (...);
-CREATE TABLE servicio_transporte (...);
-CREATE TABLE envio (...);
-CREATE TABLE evento_seguimiento (...);
+# correr
+python .\main.py
 ```
 
----
-
+## Verificar con psql (Docker)
+```powershell
+docker exec -it practicas-pyton psql -U postgres -d practicas_pyton
+\dt
+\d authors
+\d books
+SELECT * FROM authors;
+SELECT * FROM books;
+```
