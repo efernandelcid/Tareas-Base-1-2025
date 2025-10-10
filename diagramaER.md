@@ -1,3 +1,4 @@
+# Edgar Fernando Zuñiga Del Cid 2890-23-25237
 # Diagrama ER - Librería en Línea
 
 ## Explicación del Diagrama ER
@@ -80,3 +81,4 @@ erDiagram
     LIBRO   ||--o{ PEDIDO_LIBRO : aparece_en
     LIBRO   ||--o{ LIBRO_CATEGORIA : clasificado_como
     CATEGORIA ||--o{ LIBRO_CATEGORIA : agrupa
+
